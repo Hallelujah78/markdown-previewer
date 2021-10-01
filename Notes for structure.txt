@@ -1,0 +1,50 @@
+working example: https://codesandbox.io/s/funny-antonelli-4x0o5?file=/src/App.js
+may need slight edit to fix issues
+
+
+
+set up state in parent like:
+
+const [status, setState] = React.useState(false);
+  const [text, setText] = React.useState("");
+
+
+define event handlers in parent (handleClick, handleChange) like:
+
+const handleClick = () => {
+    setState((prev) => ({ status: !prev.status }));
+  };
+
+
+const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+
+
+
+pass event handlers and state to child as:
+
+const MyChild = ({ handleClick, status, handleChange, text }) => {
+
+return ()
+<Wrapper>
+<Content
+onChange={handleChange}
+value={text}
+>
+</Content>
+</Wrapper>
+}
+
+
+event handlers and state are also used as attributes when the parent renders the child as:
+const Parent = () => {
+return(
+<ChildComponent
+        
+        text={text}
+        handleChange={handleChange}
+        handleClick={handleClick}
+      />
+)}
